@@ -2,7 +2,7 @@ export class EBus {
   static __opKey = Symbol('ebus');
   static normolizeHandler(handler, options) {
     const op = Object.assign({ once: false, context: undefined }, EBus.options, options);
-    return Object.defineProperties(handler, EBus.__opKey, { value: op, writable: true, configurable: true });
+    return Object.defineProperty(handler, EBus.__opKey, { value: op, writable: true, configurable: true });
   }
   static applyHandler = (handler, args) => {
     const op = handler[EBus.__opKey];
@@ -13,7 +13,7 @@ export class EBus {
     this._events = new Map();
   }
   on(type, handler) {
-    if (!handler || handler.constructor !== Function || handler instanceof Function) return;
+    if (!handler || handler.constructor !== Function || !(handler instanceof Function)) return;
     if (!Array.isArray(this._events.get(type))) this._events.set(type, []);
     const handlers = this._events.get(type);
     handlers.push(EBus.normolizeHandler(handler));
@@ -38,3 +38,6 @@ export class EBus {
     onceList_all.map(handler => this.on(type, handler));
   }
 }
+
+// eslint-disable-next-line no-undef
+globalThis.EBus = EBus;
