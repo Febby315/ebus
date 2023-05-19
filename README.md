@@ -10,3 +10,7 @@
 - [x] 支持\*通配符事件
 - [x] 支持多参数
 - [x] API简洁: on、off、once、emit
+
+## 感谢
+
+  [mitt](https://github.com/developit/mitt): \*通配符及map的使用借鉴了其思想
