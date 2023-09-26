@@ -48,6 +48,6 @@ class EBus {
   }
 }
 
-module.exports = EBus;
-// export default EBus;
-// export { EBus, normalizeAsync };
+// module.exports = EBus;
+export default EBus;
+export { EBus, normalizeAsync };
